@@ -48,12 +48,14 @@ export const getLevUpDate = (
       end = start.add(7, "day").set("hour", 2);
     }
 
+    // 경험치 도달
     if (point >= goal) {
       list.push({
         level: String(nextUpIdx + LEVEL_ADD).padStart(2),
         date: now.format("YYYY-MM-DD"),
       });
 
+      // 다음 레벨 경험치 & 다음 멤버수
       nextUpIdx += 1;
       goal = UP_POINT[nextUpIdx] || 0;
       memCnt = MEMBER_COUNT[nextUpIdx];

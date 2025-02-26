@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { theme } from "@/theme/theme";
 import { DatesProvider } from "@mantine/dates";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 dayjs.extend(customParseFormat);
 dayjs.locale("ko");
@@ -47,6 +48,7 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme={"auto"} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <SpeedInsights />
         <MantineProvider theme={theme} defaultColorScheme={"auto"}>
           <DatesProvider settings={{ locale: "ko" }}>{children}</DatesProvider>
         </MantineProvider>

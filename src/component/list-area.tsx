@@ -1,5 +1,5 @@
 import { LevUpDate } from "@/types/level";
-import { Collapse, Text, Timeline, Title } from "@mantine/core";
+import { Badge, Collapse, Text, Timeline, Title } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 export function ListArea(props: { list?: LevUpDate[] }) {
@@ -19,6 +19,7 @@ export function ListArea(props: { list?: LevUpDate[] }) {
         {props.list?.map(({ date, level }, i) => {
           return (
             <Timeline.Item
+              variant="default"
               mt={"lg"}
               key={i}
               pt="0.2rem"
@@ -28,7 +29,9 @@ export function ListArea(props: { list?: LevUpDate[] }) {
                 </Text>
               }
             >
-              <Title order={4}>{date}</Title>
+              <Badge variant="default" h={"lg"}>
+                <Title order={5}>{date}</Title>
+              </Badge>
             </Timeline.Item>
           );
         })}
