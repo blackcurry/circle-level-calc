@@ -1,4 +1,4 @@
-import { Box, Flex, Space, Text } from "@mantine/core";
+import { Flex, Space, Text } from "@mantine/core";
 import Image from "next/image";
 import InfoImg1 from "../../public/info1.jpg";
 import InfoImg2 from "../../public/info2.jpg";
@@ -7,7 +7,7 @@ import PPS5 from "../../public/pps5.webp";
 
 export default function Info() {
   return (
-    <Box p={"md"}>
+    <Flex direction="column" p={"sm"} align={"center"}>
       <Image src={InfoImg2} alt="info1" width="318" />
       <Space h={"xs"} />
       <Text size="sm" fw={700}>
@@ -27,6 +27,6 @@ export default function Info() {
         <Image src={PPS1} width={150} alt="pps1" />
         <Image src={PPS5} width={150} alt="PPS5" />
       </Flex>
-    </Box>
+    </Flex>
   );
 }
