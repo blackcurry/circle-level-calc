@@ -16,7 +16,7 @@ export function InputArea(props: {
     <Group>
       <Group>
         <NumberInput
-          placeholder="점수(최대3,722,960)"
+          placeholder="경험치(최대3,722,960)"
           min={0}
           max={3722960}
           value={props.point}
