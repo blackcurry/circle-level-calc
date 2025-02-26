@@ -15,6 +15,7 @@ export default function InfoModal() {
       }}
       closeOnClickOutside
       withCloseButton={false}
+      size={"sm"}
     >
       <Info />
     </Modal>
