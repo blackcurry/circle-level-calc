@@ -1,21 +1,8 @@
-"use client";
-
-import { Anchor, Box, Button, Notification, Space, Title } from "@mantine/core";
-import { useRouter } from "next/navigation";
+import { Anchor, Box, Notification, Space, Title } from "@mantine/core";
 
 export default function About() {
-  const router = useRouter();
   return (
     <Box p={"md"}>
-      <Button
-        variant="default"
-        onClick={() => {
-          router.push("/");
-        }}
-      >
-        돌아가기
-      </Button>
-      <Space h={"md"} />
       <Title order={3}>이미지 출처</Title>
       <Space h={"md"} />
       <Notification title="파파샤 이미지" withCloseButton={false}>

@@ -1,6 +1,6 @@
-import About from "@/component/about";
 import GoMainButton from "@/component/common/go-main-button";
-import { Box } from "@mantine/core";
+import Info from "@/component/info";
+import { Box, Flex } from "@mantine/core";
 
 export default function page() {
   return (
@@ -8,7 +8,9 @@ export default function page() {
       <Box pt={"md"} px={"md"}>
         <GoMainButton />
       </Box>
-      <About />
+      <Flex direction={"column"} align={"center"}>
+        <Info />
+      </Flex>
     </>
   );
 }

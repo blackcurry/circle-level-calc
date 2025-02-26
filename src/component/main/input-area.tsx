@@ -1,6 +1,7 @@
-import { Checkbox, Group, NumberInput } from "@mantine/core";
+import { ActionIcon, Checkbox, Group, NumberInput } from "@mantine/core";
 import { ChangeEventHandler } from "react";
-import { InfoButton } from "./info-button";
+import Link from "next/link";
+import { IconQuestionMark } from "@tabler/icons-react";
 
 export function InputArea(props: {
   point: string | number;
@@ -23,7 +24,9 @@ export function InputArea(props: {
           rightSection={<></>}
           clampBehavior="strict"
         />
-        <InfoButton />
+        <ActionIcon component={Link} variant="default" href={"/info"}>
+          <IconQuestionMark />
+        </ActionIcon>
       </Group>
       <Group>
         <NumberInput

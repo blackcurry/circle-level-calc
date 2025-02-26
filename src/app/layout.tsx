@@ -5,7 +5,6 @@ import {
   mantineHtmlProps,
   MantineProvider,
 } from "@mantine/core";
-import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import dayjs from "dayjs";
@@ -28,8 +27,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "leveling",
-  description: "leveling",
+  title: "소녀전선2 서클 레벨 계산기",
+  description: "소녀전선2 서클 레벨 계산기",
 };
 
 export const viewport: Viewport = {
@@ -39,8 +38,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="ko" {...mantineHtmlProps}>
@@ -50,7 +51,10 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SpeedInsights />
         <MantineProvider theme={theme} defaultColorScheme={"auto"}>
-          <DatesProvider settings={{ locale: "ko" }}>{children}</DatesProvider>
+          <DatesProvider settings={{ locale: "ko" }}>
+            {children}
+            {modal}
+          </DatesProvider>
         </MantineProvider>
       </body>
     </html>

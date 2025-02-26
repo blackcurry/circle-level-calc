@@ -1,8 +1,8 @@
 "use client";
 
 import { AppShell, Button, Flex, Group, Title } from "@mantine/core";
-import { InputArea } from "./input-area";
-import { ListArea } from "./list-area";
+import { InputArea } from "./main/input-area";
+import { ListArea } from "./main/list-area";
 import { useMainData } from "./hooks/useMain";
 import Image from "next/image";
 import bg from "../../public/bg.webp";
