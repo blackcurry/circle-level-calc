@@ -1,5 +1,6 @@
 import { LevUpDate } from "@/types/level";
-import { getLevUpDate } from "@/utils/get-lev-up-date";
+import { IS_TEST } from "@/utils/constants";
+import { getLevUpDateV2 } from "@/utils/get-lev-up-date-v2";
 import { getMemberCount } from "@/utils/get-max-member-cnt";
 import { useDebouncedState } from "@mantine/hooks";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -16,18 +17,20 @@ export const useMainData = () => {
   };
 
   useEffect(() => {
+    if (IS_TEST) {
+      setPoint(130030);
+    }
+  }, [setPoint]);
+
+  useEffect(() => {
     const num = Number(point);
 
     if (!isNaN(num) && point !== "") {
-      console.log(
-        `1222memberCnt:${memberCnt}, point:${point},  check:${check}`
-      );
-
       const addUserCnt = isNaN(Number(memberCnt)) ? 0 : Number(memberCnt);
       const maxMember = getMemberCount(point);
       setMaxMemberCnt(maxMember);
 
-      const { list } = getLevUpDate(num, {
+      const { list } = getLevUpDateV2(num, {
         addUserCnt,
         useAllMemberAdd: check,
       });
