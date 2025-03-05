@@ -15,7 +15,7 @@ export function ListAreaItem(props: {
         <Tooltip
           variant="default"
           multiline
-          position="right"
+          position="bottom-start"
           events={{ hover: true, focus: false, touch: true }}
           label={
             <Flex>
