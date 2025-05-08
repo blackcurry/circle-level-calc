@@ -14,7 +14,6 @@ export function ListArea(props: { list?: LevUpDate[] }) {
     }
   }, [props.list]);
 
-  console.log(props.list);
   return (
     <Collapse in={open}>
       <Timeline active={99} bulletSize={30} lineWidth={4}>

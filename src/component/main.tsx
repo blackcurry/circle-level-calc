@@ -9,7 +9,7 @@ import bg from "../../public/bg.webp";
 
 import Link from "next/link";
 import pps4 from "../../public/pps4.jpg";
-import { IS_TEST } from "@/utils/constants";
+import { isCoTest } from "@/utils/is-test";
 
 export function Main() {
   const {
@@ -27,7 +27,7 @@ export function Main() {
     <AppShell header={{ height: 60 }} footer={{ height: 30 }} padding="md">
       <AppShell.Header>
         <Group h="100%" px="md">
-          {!IS_TEST && (
+          {!isCoTest() && (
             <>
               <Image src={pps4} width={50} height={50} alt="pps4" />
               <Title order={2}>서클 레벨 계산기</Title>
@@ -37,7 +37,7 @@ export function Main() {
       </AppShell.Header>
 
       <AppShell.Main pos={"relative"} mah={"100dvh - 90px"}>
-        {!IS_TEST && (
+        {!isCoTest() && (
           <Image
             src={bg}
             alt="bg"

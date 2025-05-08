@@ -12,7 +12,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { theme } from "@/theme/theme";
 import { DatesProvider } from "@mantine/dates";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { IS_TEST } from "@/utils/constants";
+import { isCoTest } from "@/utils/is-test";
 
 dayjs.extend(customParseFormat);
 dayjs.locale("ko");
@@ -28,8 +28,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: IS_TEST ? "" : "소녀전선2 서클 레벨 계산기",
-  description: IS_TEST ? "" : "소녀전선2 서클 레벨 계산기",
+  title: isCoTest() ? "" : "소녀전선2 서클 레벨 계산기",
+  description: isCoTest() ? "" : "소녀전선2 서클 레벨 계산기",
 };
 
 export const viewport: Viewport = {
