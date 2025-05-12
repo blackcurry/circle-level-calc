@@ -27,10 +27,10 @@ export default function Info() {
       <Image src={SubInfo1} alt="sub-info1" width="318" />
       <Space h={"xs"} />
       <Text size="sm" fw={700}>
-        툴팁의 []안 숫자는 수 만큼 해당 날짜에
+        툴팁의 []안 숫자는 해당 날짜에 괄호수 만큼
       </Text>
       <Text size="sm" fw={700}>
-        클원이 활동(과업, 흙먼지)하면 달성한다는 뜻
+        클원이 활동(과업, 흙먼지)해야 달성한다는 뜻
       </Text>
       <Space h={"xl"} />
       <Flex justify={"space-between"} w="318">
