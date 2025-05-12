@@ -1,11 +1,9 @@
+import { LevUpDate } from "@/types/level";
 import { Badge, Flex, Text, Title, Tooltip } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { forwardRef } from "react";
 
-export function ListAreaItem(props: {
-  title: string;
-  list: { label: string; date: string }[];
-}) {
+export function ListAreaItem(props: { title: string; list: LevUpDate["sub"] }) {
   return (
     <Badge variant="default" h={"lg"} p={"sm"}>
       <Flex align="center">
@@ -20,13 +18,17 @@ export function ListAreaItem(props: {
           label={
             <Flex>
               <Flex direction="column">
-                {props.list.map(({ date, label }, i) => {
+                {props.list.map(({ date, label, needCnt }, i) => {
                   return (
-                    <Text
-                      variant="default"
-                      key={i}
-                      size="sm"
-                    >{`${date}:  ${label}`}</Text>
+                    <Flex key={i} direction="row">
+                      <Text
+                        variant="default"
+                        size="sm"
+                      >{`${date}:  ${label}`}</Text>
+                      <Text fw={800} variant="text" key={i} size="sm">
+                        {needCnt && `[${needCnt}]`}
+                      </Text>
+                    </Flex>
                   );
                 })}
               </Flex>

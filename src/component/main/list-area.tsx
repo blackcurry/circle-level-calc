@@ -1,7 +1,7 @@
 import { LevUpDate } from "@/types/level";
 import { Collapse, Text, Timeline } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { ListAreaItem } from "./list-area-item";
+import { ListAreaItem } from "./list-area-sub-item";
 
 export function ListArea(props: { list?: LevUpDate[] }) {
   const [open, setOpen] = useState(true);

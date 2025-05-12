@@ -61,6 +61,7 @@ export const getLevUpDateV3 = (
   while (point <= lastPoint.p && nextTargetIdx > -1) {
     const nextTarget = FlatLevUpData[nextTargetIdx];
     const { m } = nextTarget;
+    const prePoint = point;
 
     // 과업
     point += m * 40;
@@ -79,19 +80,50 @@ export const getLevUpDateV3 = (
       start = start.add(3, "week");
       end = start.add(7, "day").set("hour", 2);
     }
+
+    // 필요 공헌도 도달
     if (point >= nextTarget.p) {
-      if (nextTarget.type === "SUB") {
-        list[list.length - 1].sub.push({
-          date: now.format("YYYY-MM-DD"),
-          label: nextTarget.l,
-        });
-      } else {
-        list.push({
-          date: now.format("YYYY-MM-DD"),
-          label: nextTarget.v,
-          sub: [{ date: now.format("YYYY-MM-DD"), label: nextTarget.l }],
-        });
-      }
+      // 도달 후 초과 포인트
+      const remainPoint = point - nextTarget.p;
+      // 필요했던 포인트
+      const needPoint = nextTarget.p - prePoint;
+      // 이전 인원 수
+      const preMemberCount =
+        FlatLevUpData[nextTargetIdx]?.m || FlatLevUpData[0].m;
+      // 필요했던 인원 비율
+      const userPercent = Math.ceil(
+        preMemberCount * (needPoint / (remainPoint + needPoint))
+      );
+
+      const setList = (
+        list: LevUpDate[],
+        type: "SUB" | "MAIN",
+        level: string,
+        label: string,
+        needCnt: number
+      ) => {
+        if (type === "SUB") {
+          list[list.length - 1].sub.push({
+            date: now.format("YYYY-MM-DD"),
+            label,
+            needCnt,
+          });
+        } else {
+          list.push({
+            date: now.format("YYYY-MM-DD"),
+            label: level,
+            sub: [
+              {
+                date: now.format("YYYY-MM-DD"),
+                label,
+                needCnt,
+              },
+            ],
+          });
+        }
+      };
+
+      setList(list, nextTarget.type, nextTarget.v, nextTarget.l, userPercent);
 
       const getNextIdx = (idx: number) => {
         const data = FlatLevUpData[idx];
@@ -103,20 +135,13 @@ export const getLevUpDateV3 = (
       const calcNextIdx = getNextIdx(nextTargetIdx + 1);
       if (calcNextIdx > nextTargetIdx + 1) {
         for (let i = nextTargetIdx + 1; i < calcNextIdx; i++) {
-          if (FlatLevUpData[i].type === "SUB") {
-            list[list.length - 1].sub.push({
-              date: now.format("YYYY-MM-DD"),
-              label: FlatLevUpData[i].l,
-            });
-          } else {
-            list.push({
-              date: now.format("YYYY-MM-DD"),
-              label: FlatLevUpData[i].v,
-              sub: [
-                { date: now.format("YYYY-MM-DD"), label: FlatLevUpData[i].l },
-              ],
-            });
-          }
+          setList(
+            list,
+            FlatLevUpData[i].type,
+            FlatLevUpData[i].v,
+            FlatLevUpData[i].l,
+            userPercent
+          );
         }
       }
       nextTargetIdx = calcNextIdx;
