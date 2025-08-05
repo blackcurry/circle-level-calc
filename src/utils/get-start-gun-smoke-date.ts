@@ -2,7 +2,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { getNow } from "./get-now";
 
 export const getStartGunSmokeDate = () => {
-  return calcGunSmokeDate(dayjs("2025-05-25").add(5, "hour"));
+  return calcGunSmokeDate(dayjs("2025-05-25")//.add(5, "hour"));
 };
 
 const calcGunSmokeDate = (start: Dayjs) => {
