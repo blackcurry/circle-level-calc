@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: isCoTest() ? "" : "소녀전선2 서클 레벨 계산기",
-  description: isCoTest() ? "" : "묭묭이보단 파파샤지",
+  description: isCoTest() ? "" : "입력하는 시점에 따라 하루정도 차이가 날수 있음 - 묭묭이보단 파파샤",
 };
 
 export const viewport: Viewport = {
