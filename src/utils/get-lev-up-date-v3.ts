@@ -8,6 +8,7 @@ export const getLevUpDateV3 = (
   options?: {
     addUserCnt?: number;
     useAllMemberAdd?: boolean;
+    isStartToday?: boolean;
   }
 ): { list: LevUpDate[]; cnt: number } => {
   let nextTargetIdx = FlatLevUpData.findIndex(({ p }) => p > cur);
@@ -19,6 +20,9 @@ export const getLevUpDateV3 = (
   }
 
   let now = getNow();
+  if (!options?.isStartToday) {
+    now = now.add(1, "day");
+  }
   let start = getStartGunSmokeDate();
   let end = start.add(7, "day");
   let point = cur;

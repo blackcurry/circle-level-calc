@@ -8,12 +8,17 @@ import { ChangeEvent, useEffect, useState } from "react";
 export const useMainData = () => {
   const [point, setPoint] = useDebouncedState<string | number>("", 500);
   const [memberCnt, setMemberCnt] = useDebouncedState<number | string>("", 500);
-  const [check, setChecked] = useState(false);
+  const [checkMoreHit, setCheckMoreHit] = useState(false);
+  const [checkToday, setCheckToday] = useState(false);
   const [maxMemberCnt, setMaxMemberCnt] = useState<number>(0);
   const [list, setList] = useState<LevUpDate[]>([]);
 
-  const handleChangeCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    setChecked(e.currentTarget.checked);
+  const handleChangeCheckMoreHit = (e: ChangeEvent<HTMLInputElement>) => {
+    setCheckMoreHit(e.currentTarget.checked);
+  };
+
+  const handleChangeCheckToday = (e: ChangeEvent<HTMLInputElement>) => {
+    setCheckToday(e.currentTarget.checked);
   };
 
   useEffect(() => {
@@ -31,26 +36,29 @@ export const useMainData = () => {
 
       const { list } = getLevUpDateV3(num, {
         addUserCnt,
-        useAllMemberAdd: check,
+        useAllMemberAdd: checkMoreHit,
+        isStartToday: checkToday,
       });
       setList(list);
     } else {
       setList([]);
     }
-  }, [memberCnt, point, check]);
+  }, [memberCnt, point, checkMoreHit, checkToday]);
 
   useEffect(() => {
     setMemberCnt("");
-  }, [check, setMemberCnt]);
+  }, [checkMoreHit, setMemberCnt]);
 
   return {
     point,
-    memberCnt: check ? "" : memberCnt,
+    memberCnt: checkMoreHit ? "" : memberCnt,
     maxMemberCnt,
     list,
-    check,
+    checkMoreHit,
+    checkToday,
     handleChangeMemCnt: setMemberCnt,
     handleChangePoint: setPoint,
-    handleChangeCheck,
+    handleChangeCheckMoreHit,
+    handleChangeCheckToday,
   };
 };

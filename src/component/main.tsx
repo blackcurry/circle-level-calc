@@ -17,10 +17,12 @@ export function Main() {
     point,
     memberCnt,
     maxMemberCnt,
-    check,
+    checkMoreHit,
+    checkToday,
     handleChangeMemCnt,
     handleChangePoint,
-    handleChangeCheck,
+    handleChangeCheckMoreHit,
+    handleChangeCheckToday,
   } = useMainData();
 
   return (
@@ -63,10 +65,12 @@ export function Main() {
               point={point}
               maxMemberCnt={maxMemberCnt}
               memberCnt={memberCnt}
-              check={check}
+              checkMoreHit={checkMoreHit}
+              checkToday={checkToday}
               onChangePoint={handleChangePoint}
               onChangeMemberCnt={handleChangeMemCnt}
-              onChangeCheck={handleChangeCheck}
+              onChangeCheckMoreHit={handleChangeCheckMoreHit}
+              onChangeCheckToday={handleChangeCheckToday}
             />
             <ListArea list={list} />
           </Flex>
